@@ -1,0 +1,17 @@
+.moveButton{
+    border: 3px solid white;
+    background-color: transparent;
+    color: white;
+    padding: .7rem;
+    font-size: 1.2rem;
+}
+.topCompass{
+    margin: 1rem 2rem;
+}
+.bottomCompass{
+    margin: 1rem 2rem;
+}
+.mainContainer{
+    margin: 2rem;
+    padding: 2rem;
+}
