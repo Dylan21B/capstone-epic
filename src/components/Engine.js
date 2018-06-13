@@ -98,6 +98,9 @@ if (this.state.south > this.state.worldsize){
            }else if (this.state.north === 2 && this.state.west === 2){
             this.state.position = "skyrim!";
             image.src = "https://images4.alphacoders.com/802/802364.jpg";
+           }else if (this.state.north === 1 && this.state.west === 1){
+            this.state.position = "skyrim!";
+            image.src = "https://images4.alphacoders.com/802/802364.jpg";
            }
                 
         else{

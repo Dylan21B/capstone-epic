@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel');
+
 .moveButton{
     border: 3px solid white;
     background-color: transparent;
     color: white;
     padding: .7rem;
     font-size: 1.2rem;
+    font-family: 'Cinzel', serif;
+
 }
 .topCompass{
     margin: 1rem 2rem;
