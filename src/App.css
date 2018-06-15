@@ -3,7 +3,10 @@
 .App {
   text-align: center;
 }
-
+.containerBody{
+  display:grid;
+  grid-template-columns:.75fr 1.5fr .75fr;
+}
 body{
   background-color: rgb(34, 33, 33);
   color: white;

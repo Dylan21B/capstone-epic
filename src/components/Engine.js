@@ -101,13 +101,92 @@ if (this.state.south > this.state.worldsize){
            }else if (this.state.north === 1 && this.state.west === 1){
             this.state.position = "skyrim!";
             image.src = "https://images4.alphacoders.com/802/802364.jpg";
-           }
-                
-        else{
-            this.position = "lost";
-            image.src = "http://www.noonco.com/rc/java_art/picture_field.jpg";
-          }
-        }   
+           } ////// Castle /////
+        else if (this.state.north === 1 && this.state.west === 0 && this.state.east === 0){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }else if (this.state.north === 1 && this.state.east === 1){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }else if (this.state.north === 1 && this.state.west === 1){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }else if (this.state.north === 0 && this.state.west === 1){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }else if (this.state.north === 0 && this.state.east === 1){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }else if (this.state.south === 1 && this.state.west === 1){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }else if (this.state.south === 1 && this.state.west === 0){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }else if (this.state.south === 1 && this.state.east === 1){
+         this.setState({position: "Casle Outskirts"});
+         image.src = OutsideCastle;
+        }
+         //// River /////
+         else if (this.state.north === 4 && this.state.east === 3){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+         }else if (this.state.north === 4 && this.state.east === 2){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }else if (this.state.north === 4 && this.state.east === 1){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }else if (this.state.north === 4 && this.state.west === 0 && this.state.east === 0){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }else if (this.state.north === 4 && this.state.west === 1){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }else if (this.state.north === 5 && this.state.west === 2){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }else if (this.state.north === 4 && this.state.west === 3){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }else if (this.state.north === 3 && this.state.west === 4){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }else if (this.state.north === 3 && this.state.west === 5){
+             this.setState({position: "Snake River"});
+             image.src = RiverBank;
+            }  
+            
+ ///////////// Mountian //////////////
+
+ else if (this.state.north === 5 && this.state.east === 1){
+     this.setState({position: "Stendar Mountian Range"});
+     image.src = Mountian;
+    }else if (this.state.north === 5 && this.state.east === 2){
+     this.setState({position: "Stendar Mountian Range"});
+     image.src = Mountian;
+    }else if (this.state.north === 5 && this.state.east === 3){
+     this.setState({position: "Stendar Mountian Range"});
+     image.src = Mountian;
+    }
+
+ //////// Mountian Top //////
+
+ else if (this.state.north === 6 && this.state.east === 1){
+     this.setState({position: "Stendar Mountian Trail"});
+     image.src = MountianTop;
+    }else if (this.state.north === 6 && this.state.east === 2){
+     this.setState({position: "Stendar Mountian Trail"});
+     image.src = MountianTop;
+    }else if (this.state.north === 6 && this.state.east === 3){
+     this.setState({position: "Stendar Mountian Trail"});
+     image.src = MountianTop;
+    }
+     else{
+         this.setState({position: "lost"});
+         image.src = "http://www.noonco.com/rc/java_art/picture_field.jpg";
+       }
+     }     
    
    
    
