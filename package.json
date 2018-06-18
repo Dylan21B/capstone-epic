@@ -1,0 +1,21 @@
+{
+  "name": "dylan-epic-adventure",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "firebase": "^5.0.4",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-rebase": "^1.0.5",
+    "re-base": "^3.2.3",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

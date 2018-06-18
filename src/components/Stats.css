@@ -1,0 +1,18 @@
+.statsContainer{
+    height: 30rem;
+    margin: 3rem;
+    background-color:  rgb(34, 33, 33);
+    border: 3px white solid;
+    display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.content{
+    padding: 10px;
+}
+.playerImage{
+    height: 8rem;
+    margin: 2rem .5rem;
+}
+.hp{
+    border-bottom: 5px solid red;
+}
