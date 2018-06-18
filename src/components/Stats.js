@@ -7,7 +7,7 @@ class Stats extends Component {
         super(props);
         this.state = {
            user: "Cork the Ork",
-           hp: 100,
+           hp: 80,
            image: PlayerImg,
            inventory: [],
 
@@ -21,10 +21,10 @@ class Stats extends Component {
                 <div className="content">
                     <h1>Stats:</h1>
                     <h3>{this.state.user}</h3>
-                    <h3>HP:  {this.state.hp}</h3>
+                    <h3 className="hp">HP:  {this.state.hp}</h3>
                     </div>
                 <div className="image">
-                    <img className="playerImage" src={this.state.image} />
+                    <img className="playerImage" src={this.state.image} alt="character" />
                 </div>
                 </div>
             )

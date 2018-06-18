@@ -11,7 +11,7 @@ class Map extends Component {
 
 render(){
     return(
-        <img className="mapImg" src={this.state.map} />
+        <img className="mapImg" src={this.state.map} alt="map" />
     )
 }
 

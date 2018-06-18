@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Cinzel');
 
 .moveButton{
+    margin: 0rem .5rem;
     border: 3px solid white;
     background-color: transparent;
     color: white;
-    padding: .7rem;
+    padding: .8rem;
     font-size: 1.2rem;
-    font-family: 'Cinzel', serif;
-
+    font-family: 'Cinzel', serif;  
+    box-shadow: 0 6px 3px rgb(85, 85, 85);
+}
+.moveButton:hover{
+    background-color: rgb(71, 71, 71);
+}
+.moveButton:active{
+    background-color: rgb(48, 48, 48);
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
 }
 .topCompass{
     margin: 1rem 2rem;
@@ -18,4 +27,21 @@
 .mainContainer{
     margin: 2rem;
     padding: 2rem;
+}
+.left{
+    float: left;
+    margin: auto;
+}
+.right{
+    float: right;
+    margin: auto;
+}
+.movement{
+    margin: .3rem;
+    font-weight: 800;
+    border: 1px solid white;
+    padding: 5px 12px; 
+    border-radius: 50px;
+    width: 1rem;
+    height: 1rem;
 }

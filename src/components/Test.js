@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Engine.css';
+import { rebase } from '.././Base.js';
 
 ///// Images import ///////
 import FeildPath from '../images/field-path.jpg';
@@ -14,47 +15,49 @@ class Engine extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            north: 0,
+            north: 3,
             south: 0,
             east: 0,
-            west: 0,
-            position: "Castle NSS",
-            currentMove: "",
-            worldSize: 5,
-            quad: ""
+            west: 3,
+            position: "Start",
+            worldSize: 4,
+            quad: "north west",
+            img: ""
         }
 this.moveNorth = this.moveNorth.bind(this);
 this.moveWest = this.moveWest.bind(this);
 this.moveEast = this.moveEast.bind(this);
 this.moveSouth = this.moveSouth.bind(this);
     }
-// componentDidUpdate(){
-//     this.setState({quad: this.getquad})    
-// }
 
 
 
-// quadSwitch() {
-//       switch {
-//           case "": return () => { this.setState({
-//             countBeverage: this.state.countBeverage + 1
-//           }); }
-//           case "fruit": return () => { this.setState({
-//             countFruit: this.state.countFruit + 1
-//           }); }
-//           case "vegetable": return () => { this.setState({
-//             countVegetable: this.state.countVegetable + 1
-//           }); }
-//           case "snack": return () => { this.setState({
-//             countSnack: this.state.countSnack + 1
-//           }); }
-//           default: return console.log("unknown category");
-//         };
-//     }; 
+///// FIREBASE CALL IN COMPONENTDIDMOUNT SO ALWAYS UPDATED /////////
+    componentDidUpdate(){
+        rebase.fetch('locations', {
+            context: this,
+            asArray: true,
+            queries: {
+                orderByChild: "Q", 
+                equalTo: this.state.quad
+            },
+            then(data){
+              data.forEach((element, i) => {
+                  var splitter = element.pos.split("")
+                var quadSplit = element.Q.split(" ")
+                // console.log(splitter[0], splitter[1])
+            if(Number(splitter[0]) === this.state[quadSplit[0]] && Number(splitter[1]) === this.state[quadSplit[1]]){
+                console.log(element, "current location");
+            }
+              });
+            }
+          });
+      
+      }
 
 
 checkWorldSize(...direction){
-console.log(this.state[direction[0]], "check")
+// console.log(this.state[direction[0]], "check")
 if( this.state.worldSize < this.state[direction[0]]){
     console.log(this.state.worldSize, "toooooo far");
     return;
@@ -62,68 +65,58 @@ if( this.state.worldSize < this.state[direction[0]]){
 
 
 if (this.state[direction[1]] < 1) {
-    console.log("increments current dir +1 ")
             this.setState({[direction[0]]: this.state[direction[0]] + 1}, this.myposition)
         }else {
             if(this.state[direction[1]] === 1){
-                console.log("opposite dir should = 1")
                 this.setState({[direction[1]]: this.state[direction[1]] -1,[direction[0]]: this.state[direction[0]] +1}, this.myposition)
             }else{
-                console.log("opposite dir greater than 1")
             this.setState({[direction[1]]: this.state[direction[1]] - 1}, this.myposition)
             }
         };
 
-// if (this.state[direction[1]] = 0){
-//     this.setState({[direction[0]]: + 1 })
-// }
-
 }
 getquad(){   /// function to assign quad
     if(this.state.north > 0 && this.state.west > 0){
-            this.setState({quad: "nw"})
+            this.setState({quad: "north west"}, this.checkState)
     }else if(this.state.south > 0 && this.state.west > 0){
-        this.setState({quad: "sw"})    
+        this.setState({quad: "south west"},this.checkState)    
     }else if(this.state.north > 0 && this.state.east > 0){
-        this.setState({quad: "ne"})
+        this.setState({quad: "north east"},this.checkState)
     }else if(this.state.south > 0 && this.state.east > 0){
-        this.setState({quad: "se"})
+        this.setState({quad: "south east"},this.checkState)
      }
-    //else {
-    //     this.setState({quad: "origin"})
-    // }
-        this.checkState();
+
 }
 checkState = () =>{
-    console.log(this.state.quad, "quad state");
+    console.log(this.state.quad, "= quad");
 
 }
 
 
 //////// MOVERS /////////////
 moveNorth() {
-console.log("north", this.state.north);
+// console.log("north", this.state.north);
 
 this.checkWorldSize("north", "south")
        
 }
 
 moveWest() {
-console.log("west", this.state.west); 
+// console.log("west", this.state.west); 
 
 this.checkWorldSize("west", "east")
    
 }
             
 moveEast() {
-console.log("east", this.state.east);
+// console.log("east", this.state.east);
 
 this.checkWorldSize("east", "west")
     
 }
 
 moveSouth() {
-console.log("souht", this.state.south);
+// console.log("souht", this.state.south);
 
 this.checkWorldSize("south", "north")  
 }
@@ -147,7 +140,7 @@ this.checkWorldSize("south", "north")
 
            }else{
             this.setState({position: "lost"});
-            image.src = "http://www.noonco.com/rc/java_art/picture_field.jpg";
+            image.src = Woods;
           }
         }   
    
@@ -155,19 +148,19 @@ this.checkWorldSize("south", "north")
         return (
         <div className="mainContainer">
             <h1> Adventure </h1>
-            <p>&nbsp;&nbsp;<img id="myImage" src="http://www.noonco.com/rc/java_art/picture_doorway.jpg" width="300" height="250" alt="location" />
+            <p>&nbsp;&nbsp;<img id="myImage" src={InsideCastle} width="350" height="250" alt="location" />
 </p>
 <p>Dylan's Adventure Game</p>
 <div>
 <div className="topCompass">
-<button className="moveButton" onClick={this.moveNorth}>North</button>
+<button className="moveButton" onClick={this.moveNorth}><span className="movement">{this.state.north}</span>  North</button>
 </div>
 <div className="midCompass">
-<button className="moveButton" onClick={this.moveWest}>West</button>
-<button className="moveButton" onClick={this.moveEast}>East</button>
+<button className="moveButton" onClick={this.moveWest}><span className="movement">{this.state.west}</span>  West</button>
+<button className="moveButton" onClick={this.moveEast}>East  <span className="movement">{this.state.east}</span></button>
 </div>
 <div className="bottomCompass"> 
-<button className="moveButton" onClick={this.moveSouth}>South</button>
+<button className="moveButton" onClick={this.moveSouth}><span className="movement">{this.state.south}</span>  South</button>
 </div>
 </div>
 <p id="demo"></p>
