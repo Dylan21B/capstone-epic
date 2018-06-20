@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Engine from './components/Test.js';
 import Stats from './components/Stats.js';
-import Map from './components/Map.js';
 import * as firebase from 'firebase';
 
 class App extends Component {
@@ -28,10 +27,10 @@ class App extends Component {
   render() {
     return (
       <div className="containerBody">
-        <Stats />
     <Engine />
     <div>
-      <Map />
+      <Stats />
+
     <h1>{this.state.score}</h1>
     </div>
     </div>

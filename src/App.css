@@ -5,15 +5,11 @@
 }
 .containerBody{
   display:grid;
-  grid-template-columns:.75fr 1.5fr .75fr;
+  grid-template-columns:1.5fr .75fr;
 }
 body{
-  background-color: rgb(34, 33, 33);
-  color: white;
+  background-color: rgb(34, 33, 33) !important;
+  color: white !important;
   font-family: 'Cinzel', serif;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
