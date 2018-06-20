@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import './Engine.css';
 import { rebase } from '.././Base.js';
+import Map from './Map';
 
-///// Images import ///////
-import FeildPath from '../images/field-path.jpg';
-import OutsideCastle from '../images/outside-castle.jpg';
-import InsideCastle from '../images/inside-castle.jpg';
-import Mountian from '../images/mountian.jpg';
-import MountianTop from '../images/mountian-top.jpg';
-import RiverBank from '../images/river-bank.jpg';
-import Woods from '../images/woods.jpg';
 
 class Engine extends Component {
     constructor(props) {
@@ -18,11 +11,13 @@ class Engine extends Component {
             north: 3,
             south: 0,
             east: 0,
-            west: 3,
+            west: 4,
             position: "Start",
             worldSize: 4,
             quad: "north west",
-            img: ""
+            img: "",
+            title: "",
+            situationalText: ""
         }
 this.moveNorth = this.moveNorth.bind(this);
 this.moveWest = this.moveWest.bind(this);
@@ -32,29 +27,40 @@ this.moveSouth = this.moveSouth.bind(this);
 
 
 
-///// FIREBASE CALL IN COMPONENTDIDMOUNT SO ALWAYS UPDATED /////////
-    componentDidUpdate(){
-        rebase.fetch('locations', {
-            context: this,
-            asArray: true,
-            queries: {
-                orderByChild: "Q", 
-                equalTo: this.state.quad
-            },
-            then(data){
-              data.forEach((element, i) => {
-                  var splitter = element.pos.split("")
-                var quadSplit = element.Q.split(" ")
-                // console.log(splitter[0], splitter[1])
-            if(Number(splitter[0]) === this.state[quadSplit[0]] && Number(splitter[1]) === this.state[quadSplit[1]]){
-                console.log(element, "current location");
-            }
-              });
-            }
-          });
+    componentWillMount(){
+        this.getScene();
       
       }
 
+
+/// FIREBASE CALL /////
+getScene =() =>{
+    rebase.fetch('locations', {
+        context: this,
+        asArray: true,
+        queries: {
+            orderByChild: "Q", 
+            equalTo: this.state.quad
+        },
+        then(data){
+          data.forEach((element, i) => {
+              var splitter = element.pos.split("")
+            var quadSplit = element.Q.split(" ")
+            var scene = element.img
+            var name = element.title
+            // console.log(splitter[0], splitter[1])
+        if((Number(splitter[0]) === this.state[quadSplit[0]]) && (Number(splitter[1]) === this.state[quadSplit[1]])){
+             this.setState({
+                 img: scene,
+                 title: name
+                })
+            console.log(element, "current location");
+            console.log(this.state.title);
+        }
+          });
+        }
+      });
+}
 
 checkWorldSize(...direction){
 // console.log(this.state[direction[0]], "check")
@@ -98,27 +104,31 @@ moveNorth() {
 // console.log("north", this.state.north);
 
 this.checkWorldSize("north", "south")
-       
+this.getScene();     
 }
 
 moveWest() {
 // console.log("west", this.state.west); 
 
 this.checkWorldSize("west", "east")
-   
+this.getScene();     
+ 
 }
             
 moveEast() {
 // console.log("east", this.state.east);
 
 this.checkWorldSize("east", "west")
-    
+this.getScene();     
+
 }
 
 moveSouth() {
 // console.log("souht", this.state.south);
 
-this.checkWorldSize("south", "north")  
+this.checkWorldSize("south", "north")
+this.getScene();     
+  
 }
 
 
@@ -130,25 +140,14 @@ this.checkWorldSize("south", "north")
             "North: " + this.state.north +"   South: " + this.state.south+"   East: " + this.state.east + "   West: " + this.state.west + "<br>" + "Location: " + this.state.position;
     
       this.getquad();
-        var image = document.getElementById('myImage');
-          if (this.state.north === 3 && this.state.west === 3){
-            this.setState({position: "Fucking Cat"});
-            image.src = "http://www.noonco.com/rc/java_art/cat_01.jpg";
-           }else if (this.state.north === 2 && this.state.west === 2){
-            this.setState({position: "skyrim!"});
-            image.src = "https://images4.alphacoders.com/802/802364.jpg";
-
-           }else{
-            this.setState({position: "lost"});
-            image.src = Woods;
-          }
         }   
    
     render(){
         return (
         <div className="mainContainer">
-            <h1> Adventure </h1>
-            <p>&nbsp;&nbsp;<img id="myImage" src={InsideCastle} width="350" height="250" alt="location" />
+            <h1> {this.state.title} </h1>
+
+            <p>&nbsp;&nbsp;<img id="myImage" src={this.state.img} width="500" height="350" alt="location" />
 </p>
 <p>Dylan's Adventure Game</p>
 <div>
@@ -164,6 +163,8 @@ this.checkWorldSize("south", "north")
 </div>
 </div>
 <p id="demo"></p>
+
+<Map quad={this.state.quad} />
 
             </div>
         )

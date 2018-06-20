@@ -1,6 +1,7 @@
 .statsContainer{
     height: 30rem;
-    margin: 3rem;
+    margin: 3rem 0;
+    margin-right: 3rem;
     background-color:  rgb(34, 33, 33);
     border: 3px white solid;
     display:grid;
