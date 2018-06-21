@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MapImg from '../images/basic-map.png';
 import './Map.css';
-import MapFull from '../images/map/Skyrimmap.png';
+import MapFull from '../images/map/Map-capstone-full.png';
 import MapNW from '../images/map/SkyrimmapNW.png';
 import MapNE from '../images/map/SkyrimmapNE.png';
 import MapSW from '../images/map/SkyrimmapSW.png';
@@ -15,7 +15,7 @@ class Map extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            quad: "",
+            quad: "north west",
             imgSrc: "",
             modal: false
    }}
@@ -24,10 +24,10 @@ class Map extends Component {
        this.setState({
            quad: nextProps
         },
-        (this.setMapQuad())
     )
-        // console.log(this.state.quad, "from map");
-        // console.log(typeof MapNE);
+    // console.log(this.state.quad, "from map");
+    // console.log(typeof MapNE);
+    this.setMapQuad()
    }
 
    setMapQuad = () => {
@@ -46,7 +46,7 @@ class Map extends Component {
       }
     else {
          this.setState({
-             imgSrc: MapImg
+             imgSrc: MapFull
          })
      }
 }
@@ -69,7 +69,7 @@ render(){
           <ModalHeader toggle={this.toggle}>Full Map</ModalHeader>
               <img src={MapFull} alt="full map" className="fullMap" />
           <ModalFooter>
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            <Button color="secondary" onClick={this.toggle}>X</Button>
           </ModalFooter>
         </Modal>
 

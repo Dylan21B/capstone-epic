@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './Engine.css';
 import { rebase } from '.././Base.js';
 import Map from './Map';
+import Stats from './Stats.js';
+// import Npc from './Npc.js';
+import { Link } from 'react-router-dom';
+import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
+
+
 
 
 class Engine extends Component {
@@ -17,7 +23,12 @@ class Engine extends Component {
             quad: "north west",
             img: "",
             title: "",
-            situationalText: ""
+            situationalText: "",
+            sitText: "",
+            location: {},
+            npc: {},
+            npcModal: false,
+            npcText: ""
         }
 this.moveNorth = this.moveNorth.bind(this);
 this.moveWest = this.moveWest.bind(this);
@@ -48,14 +59,22 @@ getScene =() =>{
             var quadSplit = element.Q.split(" ")
             var scene = element.img
             var name = element.title
+            var text = element.text
+            var npcObj = element.npc
+            var modal = element.npc.m
             // console.log(splitter[0], splitter[1])
         if((Number(splitter[0]) === this.state[quadSplit[0]]) && (Number(splitter[1]) === this.state[quadSplit[1]])){
              this.setState({
                  img: scene,
-                 title: name
+                 title: name,
+                 sitText: text,
+                 location: element,
+                 npc: npcObj,
+                 npcModal: modal,
                 })
-            console.log(element, "current location");
-            console.log(this.state.title);
+            // console.log(typeof element, "current location");
+            console.log(this.state.npcModal, "fuck");
+            console.log(this.state.npc.m, "stuff")
         }
           });
         }
@@ -131,7 +150,11 @@ this.getScene();
   
 }
 
-
+closeModal = () => {
+    this.setState({
+        npcModal: false
+      });
+}
 
 // FUNCTION TO FIGURE EXACT POSITIONING
  myposition() {
@@ -145,11 +168,29 @@ this.getScene();
     render(){
         return (
         <div className="mainContainer">
+        <div className="div1">
             <h1> {this.state.title} </h1>
 
-            <p>&nbsp;&nbsp;<img id="myImage" src={this.state.img} width="500" height="350" alt="location" />
+            <p>&nbsp;&nbsp;<img id="myImage" src={this.state.img} width="600" height="450" alt="location" />
 </p>
 <p>Dylan's Adventure Game</p>
+<h4>{this.state.sitText} </h4>
+{/* <Npc location={this.state.location}/> */}
+</div>
+<div className="div2">
+<Map quad={this.state.quad} />
+<Stats />
+
+<Modal isOpen={this.state.npcModal} id="modalNpc" className={this.props.className}>
+          <ModalHeader><div className="npcText">{this.state.npc.name}</div></ModalHeader>
+              <img src={this.state.npc.npcImg} alt="npc" className="npcImg" height="300" width="200" />
+              <h3 className="npcText"> {this.state.npc.npcText} </h3>
+          <ModalFooter>
+            <Button color="secondary" onClick={this.closeModal}>X</Button>
+          </ModalFooter>
+        </Modal>
+
+{/******* MOVER ********/}
 <div>
 <div className="topCompass">
 <button className="moveButton" onClick={this.moveNorth}><span className="movement">{this.state.north}</span>  North</button>
@@ -164,7 +205,10 @@ this.getScene();
 </div>
 <p id="demo"></p>
 
-<Map quad={this.state.quad} />
+
+<Link to='/gameover'>To GameOver</Link>
+
+</div>
 
             </div>
         )

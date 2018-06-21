@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Engine from './components/Test.js';
-import Stats from './components/Stats.js';
-import * as firebase from 'firebase';
+import Main from './components/Main.js';
 
 class App extends Component {
 
@@ -12,27 +10,12 @@ class App extends Component {
       score: 0
     }
   }
-
-  componentDidMount(){
-    const rootRef = firebase.database().ref();
-    const scoreRef = rootRef.child('score');
-    scoreRef.on('value', snap => {
-      this.setState({
-        score: snap.val()
-      })
-    })
-    }
   
 
   render() {
     return (
       <div className="containerBody">
-    <Engine />
-    <div>
-      <Stats />
-
-    <h1>{this.state.score}</h1>
-    </div>
+    <Main  />
     </div>
     );
   }

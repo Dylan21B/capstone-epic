@@ -1,0 +1,13 @@
+.startContainer{
+    margin: 3rem;
+    padding: 10px;
+}
+.charChoiceImg{
+    height: 15rem;
+    margin: 0 2rem;
+
+}
+.chooseCharCont{
+    display: flex;
+    flex-direction: row;
+}
