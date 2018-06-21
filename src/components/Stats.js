@@ -20,8 +20,8 @@ class Stats extends Component {
                 <div className="statsContainer">
                 <div className="content">
                     <h1>Stats:</h1>
-                    <h3>{this.state.user}</h3>
-                    <h3 className="hp">HP:  {this.state.hp}</h3>
+                    <h4>{this.state.user}</h4>
+                    <h4 className="hp">HP:  {this.state.hp}</h4>
                     </div>
                 <div className="image">
                     <img className="playerImage" src={this.state.image} alt="character" />

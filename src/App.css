@@ -2,11 +2,12 @@
 
 .App {
   text-align: center;
+  height: 100vh;
 }
-.containerBody{
+/* .containerBody{
   display:grid;
-  grid-template-columns:1.5fr .75fr;
-}
+  grid-template-columns:2fr .5fr;
+} */
 body{
   background-color: rgb(34, 33, 33) !important;
   color: white !important;

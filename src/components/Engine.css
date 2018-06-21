@@ -24,9 +24,14 @@
 .bottomCompass{
     margin: 1rem 2rem;
 }
+.npcText{
+    color: black;
+}
 .mainContainer{
-    margin: 2rem;
-    padding: 2rem;
+    padding: 0 1rem;
+    margin: 1.5rem;
+    display:grid;
+    grid-template-columns:2fr .5fr;
 }
 .left{
     float: left;
