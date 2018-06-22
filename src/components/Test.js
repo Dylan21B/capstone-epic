@@ -28,15 +28,16 @@ class Engine extends Component {
             location: {},
             npc: {},
             npcModal: false,
-            npcText: ""
+            npcText: "",
+            characterName: "",
+            dieText: "",
+            dieMsg: "" 
         }
 this.moveNorth = this.moveNorth.bind(this);
 this.moveWest = this.moveWest.bind(this);
 this.moveEast = this.moveEast.bind(this);
 this.moveSouth = this.moveSouth.bind(this);
     }
-
-
 
     componentWillMount(){
         this.getScene();
@@ -62,6 +63,9 @@ getScene =() =>{
             var text = element.text
             var npcObj = element.npc
             var modal = element.npc.m
+            var dead = element.npc.die
+            var deadtext = element.npc.dieText
+            var deadMsg = element.npc.dieMsg
             // console.log(splitter[0], splitter[1])
         if((Number(splitter[0]) === this.state[quadSplit[0]]) && (Number(splitter[1]) === this.state[quadSplit[1]])){
              this.setState({
@@ -71,10 +75,13 @@ getScene =() =>{
                  location: element,
                  npc: npcObj,
                  npcModal: modal,
+                 die: dead,
+                 dieText: deadtext,
+                 dieMsg: deadMsg  
                 })
             // console.log(typeof element, "current location");
-            console.log(this.state.npcModal, "fuck");
-            console.log(this.state.npc.m, "stuff")
+            console.log(this.state.die, "tester log");
+            // console.log(this.state.npc.m, "stuff")
         }
           });
         }
@@ -155,6 +162,11 @@ closeModal = () => {
         npcModal: false
       });
 }
+closeModalDie = () => {
+    this.setState({
+        die: false
+      });
+}
 
 // FUNCTION TO FIGURE EXACT POSITIONING
  myposition() {
@@ -171,7 +183,7 @@ closeModal = () => {
         <div className="div1">
             <h1> {this.state.title} </h1>
 
-            <p>&nbsp;&nbsp;<img id="myImage" src={this.state.img} width="600" height="450" alt="location" />
+            <p>&nbsp;&nbsp;<img id="myImage" src={this.state.img} width="700" height="450" alt="location" />
 </p>
 <p>Dylan's Adventure Game</p>
 <h4>{this.state.sitText} </h4>
@@ -181,14 +193,30 @@ closeModal = () => {
 <Map quad={this.state.quad} />
 <Stats />
 
-<Modal isOpen={this.state.npcModal} id="modalNpc" className={this.props.className}>
-          <ModalHeader><div className="npcText">{this.state.npc.name}</div></ModalHeader>
+<Modal isOpen={this.state.die} id="modalDie" className={this.props.className}>
+          <ModalHeader><div className="npcText">You Died!</div></ModalHeader>
+          <div className="npcImgdiv">
+          <div className="npcText"><h3>{this.state.npc.dieMsg}</h3></div>
+              <img src={this.state.npc.dieImg} alt="npc" className="npcImg" height="300" width="200" />
+              </div>
+              <h3 className="npcText"> {this.state.npc.dieText} </h3>
+          <ModalFooter>
+          <Link to='/gameover'>To GameOver</Link>
+          </ModalFooter>
+        </Modal>
+
+<Modal isOpen={this.state.npcModal} modalTransition={{ timeout: 1000 }} id="modalNpc" className={this.props.className}>
+          <ModalHeader><div className="npcText"><h2>{this.state.npc.name}</h2></div></ModalHeader>
+          <div className="npcImgdiv">
               <img src={this.state.npc.npcImg} alt="npc" className="npcImg" height="300" width="200" />
+              </div>
               <h3 className="npcText"> {this.state.npc.npcText} </h3>
           <ModalFooter>
             <Button color="secondary" onClick={this.closeModal}>X</Button>
           </ModalFooter>
         </Modal>
+
+
 
 {/******* MOVER ********/}
 <div>

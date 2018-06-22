@@ -13,7 +13,18 @@ class Stats extends Component {
 
         }
     }
+    componentWillMount(){
+        this.grabCharacter();
+    }
 
+    grabCharacter = () =>{
+        var characterLS = localStorage.getItem('character');
+        console.log(characterLS, "12345");
+        this.setState({
+            user: characterLS
+        })
+    console.log(this.state.user, "user");
+    }
 
         render(){
             return(
@@ -21,7 +32,6 @@ class Stats extends Component {
                 <div className="content">
                     <h1>Stats:</h1>
                     <h4>{this.state.user}</h4>
-                    <h4 className="hp">HP:  {this.state.hp}</h4>
                     </div>
                 <div className="image">
                     <img className="playerImage" src={this.state.image} alt="character" />

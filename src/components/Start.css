@@ -11,3 +11,29 @@
     display: flex;
     flex-direction: row;
 }
+#submit{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+.welcome{
+    margin: 2rem;
+    border: 2px solid white;
+    padding: 1rem;
+}
+.statbtn{
+    background-color: white;
+
+}
+.start{
+    color: black !important;
+    text-decoration: none;
+    background-color: white;
+}
+.bottom{
+    margin: 0 1rem;
+}
+
+.buttons{
+    margin: 2rem;
+}

@@ -24,6 +24,14 @@
 .bottomCompass{
     margin: 1rem 2rem;
 }
+.npcImgdiv{
+    justify-content: center;
+}
+.npcImg{
+    height: auto;
+    width: auto;
+    max-width: 31rem;
+}
 .npcText{
     color: black;
 }

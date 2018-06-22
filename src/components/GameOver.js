@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 
 const GameOver = () => (
   <div className="overContainer">
-    <h1>Game Over! You Suck!</h1>
-    <Link to='/'>Try Agian</Link>
+    <h1>Game Over!</h1><br />
+    <h1>Good try, but learn from your mistakes and try agian! </h1>
+    <Link to='/'><span className="bigger">Try Agian</span></Link>
 
   </div>
 )

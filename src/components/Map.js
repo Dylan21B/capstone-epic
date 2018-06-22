@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import MapImg from '../images/basic-map.png';
 import './Map.css';
 import MapFull from '../images/map/Map-capstone-full.png';
-import MapNW from '../images/map/SkyrimmapNW.png';
-import MapNE from '../images/map/SkyrimmapNE.png';
-import MapSW from '../images/map/SkyrimmapSW.png';
-import MapSE from '../images/map/SkyrimmapSE.png';
+import MapNW from '../images/map/MapNW.png';
+import MapNE from '../images/map/MapNE.png';
+import MapSW from '../images/map/MapSW.png';
+import MapSE from '../images/map/MapSE.png';
 
 import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
 
